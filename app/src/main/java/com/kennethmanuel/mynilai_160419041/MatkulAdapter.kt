@@ -27,6 +27,24 @@ class MatkulAdapter(applicationContext: Context) :RecyclerView.Adapter<MatkulAda
             if(matkul.NAS == -1) {
                 checkBoxNAS.isChecked = false
             }
+
+            if(matkul.NTS != -1 && matkul.NAS != -1) {
+                val nisbi = matkul.NTS * 0.4 + matkul.NAS * 0.6
+                when(nisbi) {
+                    in 81.0..100.0 -> textViewNisbi.text = "A"
+                    in 73.0..81.0 -> textViewNisbi.text = "AB"
+                    in 66.0..73.0 -> textViewNisbi.text = "B"
+                    in 60.0..66.0 -> textViewNisbi.text = "BC"
+                    in 55.0..60.0 -> textViewNisbi.text = "C"
+                    in 40.0..55.0 -> textViewNisbi.text = "D"
+                    in 0.0..40.0 -> textViewNisbi.text = "E"
+                }
+            }
+
+            buttonEdit.setOnClickListener {
+//                val intent = Intent(context, )
+            }
+
         }
     }
 
