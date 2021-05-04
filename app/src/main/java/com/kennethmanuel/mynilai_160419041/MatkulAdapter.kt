@@ -1,9 +1,13 @@
 package com.kennethmanuel.mynilai_160419041
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_card.view.*
 
@@ -42,7 +46,22 @@ class MatkulAdapter(applicationContext: Context) :RecyclerView.Adapter<MatkulAda
             }
 
             buttonEdit.setOnClickListener {
-//                val intent = Intent(context, )
+                val intent = Intent(context, EditActivity::class.java)
+                intent.putExtra(Global.INDEXEDITED, position)
+                context.startActivity(intent)
+            }
+
+            imageButtonDelete.setOnClickListener{
+                val builder = AlertDialog.Builder(context)
+                builder.setMessage("Delete mata kuliah " + Global.daftarMatkul[position].nama + "?")
+                builder.setPositiveButton("DELETE", DialogInterface.OnClickListener{
+                    dialogInterface, i ->
+                    Global.daftarMatkul.removeAt(position)
+                    this@MatkulAdapter.notifyDataSetChanged()
+                    Toast.makeText(context, "Mata kuliah ${matkul.nama} telah dihapus.", Toast.LENGTH_SHORT).show()
+                })
+                builder.setNegativeButton("CANCEL", null)
+                builder.create().show()
             }
 
         }

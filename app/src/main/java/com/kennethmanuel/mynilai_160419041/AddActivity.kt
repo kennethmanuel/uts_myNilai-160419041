@@ -26,6 +26,15 @@ class AddActivity : AppCompatActivity() {
             }
 
             val builder = AlertDialog.Builder(this)
+            if(editTextNamaMatkul.text.isEmpty() || editTextKodeMatkul.text.isEmpty() || editTextNamaSingkat.text.isEmpty()) {
+                with(builder) {
+                    setTitle("Kesalahan")
+                    setMessage("Kode, nama, dan nama singkat mata kuliah harus diisi.")
+                    setPositiveButton("Ok", { dialog: DialogInterface?, which: Int -> })
+                    show()
+                }
+            }
+
             if (kodeMatkul.length != 8) {
                 with(builder) {
                     setTitle("Kesalahan")
@@ -45,7 +54,7 @@ class AddActivity : AppCompatActivity() {
                     if (NTS < 0 || NTS > 100 || NAS < 0 || NAS > 100) {
                         with(builder) {
                             setTitle("Kesalahan")
-                            setMessage("Nilai NTS dan NAS hanya boleh diantara 0 dan 100 (0)")
+                            setMessage("Nilai NTS dan NAS hanya boleh diantara 0 dan 100")
                             setPositiveButton("Ok", { dialog: DialogInterface?, which: Int -> })
                             show()
                         }
@@ -63,7 +72,7 @@ class AddActivity : AppCompatActivity() {
                     if (NTS < 0 || NTS > 100) {
                         with(builder) {
                             setTitle("Kesalahan")
-                            setMessage("Nilai NTS dan NAS hanya boleh diantara 0 dan 100 (1)")
+                            setMessage("Nilai NTS dan NAS hanya boleh diantara 0 dan 100")
                             setPositiveButton("Ok", { dialog: DialogInterface?, which: Int -> })
                             show()
                         }
@@ -81,7 +90,7 @@ class AddActivity : AppCompatActivity() {
                     if (NAS < 0 || NAS > 100) {
                         with(builder) {
                             setTitle("Kesalahan")
-                            setMessage("Nilai NTS dan NAS hanya boleh diantara 0 dan 100 (2) ")
+                            setMessage("Nilai NTS dan NAS hanya boleh diantara 0 dan 100")
                             setPositiveButton("Ok", { dialog: DialogInterface?, which: Int -> })
                             show()
                         }
